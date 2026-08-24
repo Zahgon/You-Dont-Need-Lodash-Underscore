@@ -1,13 +1,12 @@
-language: node_js
+language: go
 
-node_js:
-  - 10
-  - 12
-  - 14
+go:
+  - "1.27"
 
 script:
-  - yarn test
-  - yarn test:unit
+  - go build ./...
+  - go vet ./...
+  - go test ./... -count=1 -covermode=count -coverprofile=coverage.out
 
 after_success:
-  - yarn coveralls
+  - go tool cover -func=coverage.out

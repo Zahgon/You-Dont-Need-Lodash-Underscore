@@ -1,0 +1,4 @@
+github.com/ije/esbuild-internal v0.28.1 h1:aj33Kv0dR5r9MXjTs4OLIKU/+msLaDHs+Buebo6WL9o=
+github.com/ije/esbuild-internal v0.28.1/go.mod h1:s7HvKZ4ZGifyzvgWpSwnJOQTr6b+bsgfNBZ8HAEwwSM=
+golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 h1:0A+M6Uqn+Eje4kHMK80dtF3JCXC4ykBgQG4Fe06QRhQ=
+golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

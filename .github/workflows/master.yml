@@ -22,8 +22,10 @@ jobs:
       - name: 👌🏻 Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
-        run: npm ci
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.27"
       - name: 🔎 Run tests
-        run: npm run test
+        run: go test ./... -count=1 -covermode=count -coverprofile=coverage.out
       - name: Run unit tests
-        run: npm run test:unit
+        run: go test ./tests/unit/... -count=1

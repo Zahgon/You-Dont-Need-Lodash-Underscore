@@ -1,0 +1,353 @@
+================================================================================
+PHASE 0 BASELINE - SOURCE REPOSITORY VERIFICATION
+================================================================================
+
+Repository : https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore
+Commit SHA : 4642f5c01dde729e7eeedf38138faa54576ced8d
+Checkout   : C:\Users\MohammadN-Int\Documents\nowchecks\You-Dont-Need-Lodash-Underscore
+Package    : eslint-plugin-you-dont-need-lodash-underscore@6.14.0
+Captured   : Phase 0, before any translation work.
+
+--------------------------------------------------------------------------------
+ENVIRONMENT
+--------------------------------------------------------------------------------
+
+$ node --version
+v24.18.1
+
+$ npm --version
+11.16.0
+
+$ go version
+go version go1.27.0 windows/amd64
+
+OS: Microsoft Windows NT 10.0.26200.0
+
+$ git rev-parse HEAD
+4642f5c01dde729e7eeedf38138faa54576ced8d
+
+$ npm ls --depth=0
+eslint-plugin-you-dont-need-lodash-underscore@6.14.0 C:\Users\MohammadN-Int\Documents\nowchecks\You-Dont-Need-Lodash-Underscore
+├── coveralls@3.1.1
+├── eslint@8.48.0
+├── istanbul@0.4.5
+├── kebab-case@1.0.0
+├── lodash@4.18.1
+└── mocha@10.8.2
+
+Declared in package.json:
+  dependencies    : kebab-case ^1.0.0
+  devDependencies : coveralls ^3.1.1, eslint ^8.48.0, istanbul ^0.4.4,
+                    lodash ^4.17.4, mocha ^10.2.0
+  engines         : node >=4.0
+
+--------------------------------------------------------------------------------
+TEST MODULE 1 of 2 - `npm test`  (istanbul cover tests)
+--------------------------------------------------------------------------------
+
+This entry point loads `tests/index.js`, which itself requires
+`tests/lib/rules/all.js`. Neither file uses a test framework runner: both are
+executed directly by node. `tests/index.js` performs 8 `assert.equal` checks
+against the generated plugin configs. `tests/lib/rules/all.js` drives ESLint's
+`RuleTester` over 16 `ruleTester.run(...)` blocks (27 valid snippets and 26
+invalid snippets). RuleTester throws on the first mismatch, so a clean exit
+code 0 means every one of those assertions held.
+
+Because neither file registers a reporter, a successful run produces no
+per-test output - only istanbul's coverage summary. That is the expected
+successful shape of this command, not a missing result.
+
+$ npm test
+
+> eslint-plugin-you-dont-need-lodash-underscore@6.14.0 test
+> istanbul cover tests
+
+=============================================================================
+Writing coverage object [C:\Users\MohammadN-Int\Documents\nowchecks\You-Dont-Need-Lodash-Underscore\coverage\coverage.json]
+Writing coverage reports at [C:\Users\MohammadN-Int\Documents\nowchecks\You-Dont-Need-Lodash-Underscore\coverage]
+=============================================================================
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 50/50 )
+Branches     : 90.7% ( 39/43 )
+Functions    : 100% ( 4/4 )
+Lines        : 100% ( 47/47 )
+================================================================================
+
+EXIT CODE : 0
+RUNTIME   : 27.3111237 s
+
+(Note: PowerShell reports node.exe writing to stderr as a `NativeCommandError`
+record. That is a PowerShell stream-mapping artifact around istanbul's banner
+output, not a test failure - the process exit code is 0.)
+
+RESULT: PASS. 8 config assertions + 16 RuleTester blocks, 0 failures, 0 errors,
+0 skipped.
+
+--------------------------------------------------------------------------------
+TEST MODULE 2 of 2 - `npm run test:unit`  (mocha tests/unit)
+--------------------------------------------------------------------------------
+
+$ npm run test:unit
+
+> eslint-plugin-you-dont-need-lodash-underscore@6.14.0 test:unit
+> mocha tests/unit
+
+
+
+  code snippet example
+    ✔ compact
+    ✔ concat
+    ✔ invert
+    ✔ mapKeys
+    ✔ pick
+    ✔ pickBy
+    fill
+      ✔ _.fill(array, 'a')
+      ✔ _.fill(Array(3), 2)
+      ✔ _.fill([4, 6, 8, 10], '*', 1, 3)
+    chunk
+      ✔ _.chunk(['a', 'b', 'c', 'd'], 2);
+      ✔ _.chunk(['a', 'b', 'c', 'd'], 3);
+    times
+      ✔ _.times(10);
+      ✔ _.times(10, x => x + 1);
+    assign
+      ✔ _.assign({}, new Foo, new Bar);
+      ✔ _.assign(new Foo, new Bar);
+    extend
+      ✔ _.extend({}, new Foo, new Bar);
+      ✔ _.extend(new Foo, new Bar);
+    isDate
+      ✔ _.Date(null)
+      ✔ _.Date('Mon April 23 2012')
+      ✔ _.Date(new Date)
+    isEmpty
+      ✔ _.isEmpty(null)
+      ✔ _.isEmpty('')
+      ✔ _.isEmpty({})
+      ✔ _.isEmpty([])
+      ✔ _.isEmpty({a: '1'})
+    isInteger
+      ✔ _.isInteger(3)
+      ✔ _.isInteger("3")
+      ✔ _.isInteger(2.9)
+      ✔ _.isInteger(NaN)
+    isPlainObject
+      ✔ _.isPlainObject(NaN)
+      ✔ _.isPlainObject([1, 2, 3])
+      ✔ _.isPlainObject(null)
+      ✔ _.isPlainObject({ 'x': 0, 'y': 0 })
+      ✔ _.isPlainObject(Object.create(null))
+      ✔ _.isPlainObject(Object.create(new Foo()))
+      ✔ _.isPlainObject(Object.create(new Date()))
+    get
+      ✔ should handle falsy values
+      ✔ should handle just bracket notation
+      ✔ should handle just period notation
+      ✔ should handle neither notation
+      ✔ should handle both notation
+      ✔ should handle array path
+      ✔ should handle undefined without default
+      ✔ should handle undefined with default
+      ✔ should handle deep undefined without default
+      ✔ should handle deep undefined with default
+      ✔ should handle null default
+      ✔ should handle empty path
+      ✔ should handle undefined obj
+      ✔ should handle path contains a key with dots
+      ✔ should handle array path of keys with dots
+    split
+      ✔ _.split("a-b-c", "-")
+      ✔ _.split("a-b-c", "-", 2)
+    inRange
+      ✔ _.inRange(3, 2, 4)
+      ✔ _.inRange(4, 8)
+      ✔ _.inRange(4, 2)
+      ✔ _.inRange(2, 2)
+      ✔ _.inRange(1.2, 2)
+      ✔ _.inRange(5.2, 4)
+      ✔ _.inRange(-3, -2, -6)
+      ✔ _.inRange(1, 1, 5)
+    random
+      ✔ random() in range [0, 1]
+      ✔ random() is float
+      ✔ random(5) in range [0, 5]
+      ✔ random(5) is float
+      ✔ random(-10) supports negative
+      ✔ random(10, 5) swap the bounds
+      ✔ random(-10, 10) supports negative
+      ✔ random(-10, 10) in range [-10, 10]
+      ✔ random(1.2, 5.2) supports floats
+      ✔ random(100000, 100001) in range [100000, 100001]
+    randomInt
+      ✔ randomInt() return `0` or `1`
+      ✔ randomInt(5) in range [0, 5]
+      ✔ randomInt(5) is integer
+      ✔ randomInt(-10) supports negative
+      ✔ randomInt(10, 5) swap the bounds
+      ✔ randomInt(-10, 10) supports negative
+      ✔ randomInt(-10, 10) in range [-10, 10]
+      ✔ randomInt(1.2, 5.2) supports floats
+      ✔ randomInt(100000, 100001) return `100000` or `100001`
+    clamp
+      ✔ clamp(-10, -5, 5) returns lower bound if number is less than it
+      ✔ clamp(10, -5, 5) returns upper bound if number is greater than it
+      ✔ clamp(10, -5) treats second parameter as upper bound
+    padStart
+      ✔ _.padStart("123", 5, "0")
+      ✔ _.padStart("123", 6, "_-")
+    padEnd
+      ✔ _.padEnd("123", 5, "0")
+      ✔ _.padEnd("123", 6, "_-")
+    upperFirst
+      ✔ _.upperFirst("george")
+      ✔ _.upperFirst(null)
+      ✔ _.upperFirst("")
+    isString
+      ✔ _.isString("abc")
+      ✔ _.isString(1)
+      ✔ _.isString("")
+    lowerFirst
+      ✔ _.lowerFirst("Fred")
+      ✔ _.lowerFirst(null)
+      ✔ _.lowerFirst("")
+    isUndefined
+      ✔ _.isUndefined(definedVariable)
+      ✔ _(definedVariable).isUndefined()
+      ✔ _.isUndefined(undefinedVariable)
+      ✔ _(undefinedVariable).isUndefined()
+    flatten
+      ✔ _.flatten(twoLayerArray)
+      ✔ _.flatten(multiLayerArray)
+    forEach
+      ✔ _.forEach(array)
+      ✔ _.forEach(object)
+    startsWith
+      ✔ _.startsWith('abc', 'a')
+      ✔ _.startsWith('abc', 'b')
+      ✔ _.startsWith('abc', 'b', 1)
+    endsWith
+      ✔ _.endsWith('abc', 'c')
+      ✔ _.endsWith('abc', 'b')
+      ✔ _.endsWith('abc', 'b', 2)
+    throttle
+      ✔ throttle is not called more than once within timeframe
+    isFunction
+      ✔ _.isFunction(setTimeout)
+      ✔ _.isFunction(1)
+      ✔ _.isFunction(abc)
+    unionBy
+      ✔ should take an iteratee function
+      ✔ should output values from the first possible array
+    capitalize
+      ✔ _.capitalize("FRED")
+      ✔ _.capitalize("fred")
+      ✔ _.capitalize("HELLO WORLD")
+      ✔ _.capitalize("hello world")
+    defaults
+      ✔ sets up default values the same way
+      ✔ should handle nested values equally
+    last
+      ✔ _.last([1,2,3,4,5])
+      ✔ _.last([])
+    first
+      ✔ _.first([1,2,3,4,5])
+      ✔ _.first([])
+    head
+      ✔ _.head([1,2,3,4,5])
+      ✔ _.head([])
+
+
+  128 passing (63ms)
+
+EXIT CODE : 0
+RUNTIME   : 14.736099 s
+
+RESULT: PASS. 128 passing, 0 failing, 0 pending, 0 skipped.
+
+--------------------------------------------------------------------------------
+BASELINE TOTALS
+--------------------------------------------------------------------------------
+
+Test modules      : 2
+Modules passing   : 2 / 2
+`npm test`        : PASS (exit 0) - 8 config assertions + 16 RuleTester blocks
+                    covering 27 valid and 26 invalid snippets
+`npm run test:unit`: PASS (exit 0) - 128 passing, 0 failing
+Pre-existing failures: NONE. The baseline is entirely green.
+
+Because the baseline has zero failures, any test failure observed after
+translation is caused by the translation and must be fixed in the
+implementation - never by weakening a test.
+
+--------------------------------------------------------------------------------
+ENTRY POINT EXECUTION (recorded to baseline_outputs/)
+--------------------------------------------------------------------------------
+
+This package has no CLI. Its entry point is `require('eslint-plugin-you-dont-
+need-lodash-underscore')`, which exposes `.rules` and `.configs`, consumed by
+ESLint. The entry point was exercised on real input and recorded:
+
+  baseline_outputs/fixture.js      Input: a JavaScript source file exercising
+                                   every reporting path (ESM named imports,
+                                   default imports from per-method modules,
+                                   `lodash.<method>` packages, `lodash/fp`,
+                                   `lodash-es`, destructured require,
+                                   destructuring assignment to an existing
+                                   binding, bare require, `_.method()`,
+                                   `lodash.method()`, `underscore.method()`,
+                                   wrapper chaining `_(x).method()`, plus
+                                   native forms that must NOT report).
+
+  baseline_outputs/configs.json    Output: JSON.stringify(plugin.configs, null, 2)
+                                   4 configs: all-warn, all, compatible-warn,
+                                   compatible.
+
+  baseline_outputs/rules.txt       Output: the 73 exported rule names, in export
+                                   order.
+
+  baseline_outputs/lint_report.txt Output: every diagnostic produced by running
+                                   all 73 rules at "error" over fixture.js via
+                                   ESLint 8's Linter API with
+                                   parserOptions {ecmaVersion: 2018,
+                                   sourceType: "module"}, formatted as
+                                   `line:column  ruleId  message` and sorted by
+                                   (line, column, ruleId, message).
+                                   31 diagnostics.
+
+Generator command:
+  $ node _gen_baseline.js "<...>/target repo/baseline_outputs"
+  configs: 4
+  rules: 73
+  reports: 31
+
+The generator script was removed from the source checkout after use so the
+baseline tree remains byte-identical to the pinned commit.
+
+--------------------------------------------------------------------------------
+FACTS ESTABLISHED FOR THE TRANSLATION
+--------------------------------------------------------------------------------
+
+1. `lib/rules/rules.json` contains 73 entries, producing 73 distinct rule
+   names. There are no rule-name collisions, so no last-write-wins behavior
+   needs to be reproduced.
+
+2. The `kebab-case@1.0.0` algorithm is a plain per-character transform: each
+   uppercase Latin letter is replaced by "-" + its lowercase form. It does NOT
+   understand acronyms. Verified against the real dependency:
+       isNaN        -> is-na-n
+       forEach      -> for-each
+       lastIndexOf  -> last-index-of
+       isArray      -> is-array
+       startsWith   -> starts-with
+       endsWith     -> ends-with
+   This is precisely why `rules.json` carries explicit `ruleName` overrides for
+   bind, isInteger, isNaN, isNil, isNull, isUndefined, startsWith and endsWith:
+   without them `isNaN` would become `is-na-n`. The Go port must reproduce the
+   naive algorithm exactly, including the `is-na-n` shape, because rules lacking
+   an override depend on it.
+
+3. `tests/unit/all.js` does not exercise the plugin. It asserts that the lodash
+   library and hand-written native JavaScript snippets agree. Its subject matter
+   is the JavaScript language and the lodash library themselves.

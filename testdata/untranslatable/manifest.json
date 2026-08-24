@@ -1,0 +1,289 @@
+{
+  "source_file": "tests/unit/all.js",
+  "source_sha256": "3C7F4E6911AE0BCE83D8B7B54CF85752DB1FE34656496ED0C388D1F98967CD62",
+  "total_cases": 128,
+  "translated_cases": 89,
+  "untranslatable_cases": 39,
+  "reason_codes": {
+    "UNDEFINED_VALUE": "Requires `undefined` as a value distinct from null and from absence.",
+    "TOBOOLEAN_COERCION": "Requires JavaScript ToBoolean coercion over heterogeneously typed values.",
+    "PROTOTYPE_CHAIN": "Requires the JavaScript prototype chain (Object.create, getPrototypeOf, instanceof, for...in inheritance, constructor lookup).",
+    "WRAPPER_OBJECT_IDENTITY": "Requires the JavaScript primitive-vs-wrapper-object distinction.",
+    "LODASH_CHAIN_WRAPPER": "Requires lodash's chainable _() wrapper object."
+  },
+  "excluded": [
+    {
+      "describe": null,
+      "it": "compact",
+      "source_line": 7,
+      "reason_code": "TOBOOLEAN_COERCION",
+      "reason": "The native side filters [0, 1, false, 2, '', 3] by `v => v`, which is ToBoolean applied across numbers, a boolean and a string."
+    },
+    {
+      "describe": null,
+      "it": "pickBy",
+      "source_line": 79,
+      "reason_code": "TOBOOLEAN_COERCION",
+      "reason": "The native side keeps a key when `object[key]` is truthy over a fixture holding 1, null, 3, false, undefined, '' and 0."
+    },
+    {
+      "describe": "assign",
+      "it": "_.assign({}, new Foo, new Bar);",
+      "source_line": 167,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "Foo.prototype.d and Bar.prototype.f make the result depend on which properties are own versus inherited."
+    },
+    {
+      "describe": "assign",
+      "it": "_.assign(new Foo, new Bar);",
+      "source_line": 173,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The target is a constructed instance whose prototype properties decide the outcome."
+    },
+    {
+      "describe": "extend",
+      "it": "_.extend({}, new Foo, new Bar);",
+      "source_line": 204,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet copies with `for...in`, which walks inherited prototype properties."
+    },
+    {
+      "describe": "extend",
+      "it": "_.extend(new Foo, new Bar);",
+      "source_line": 210,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet copies with `for...in` into a constructed instance, so inheritance decides the result."
+    },
+    {
+      "describe": "isDate",
+      "it": "_.Date(null)",
+      "source_line": 221,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet brands the value with `Object.prototype.toString.call`."
+    },
+    {
+      "describe": "isDate",
+      "it": "_.Date('Mon April 23 2012')",
+      "source_line": 227,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet brands the value with `Object.prototype.toString.call`."
+    },
+    {
+      "describe": "isDate",
+      "it": "_.Date(new Date)",
+      "source_line": 233,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet brands the value with `Object.prototype.toString.call`."
+    },
+    {
+      "describe": "isEmpty",
+      "it": "_.isEmpty(null)",
+      "source_line": 244,
+      "reason_code": "TOBOOLEAN_COERCION",
+      "reason": "The answer comes from the `obj ? ... : true` guard rather than from any property of the value."
+    },
+    {
+      "describe": "isEmpty",
+      "it": "_.isEmpty('')",
+      "source_line": 250,
+      "reason_code": "TOBOOLEAN_COERCION",
+      "reason": "The empty string is reported as empty only because it is falsy under ToBoolean."
+    },
+    {
+      "describe": "isEmpty",
+      "it": "_.isEmpty({})",
+      "source_line": 256,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet decides emptiness with `[Object, Array].includes(obj.constructor)`, a prototype lookup."
+    },
+    {
+      "describe": "isEmpty",
+      "it": "_.isEmpty([])",
+      "source_line": 262,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet decides emptiness with `[Object, Array].includes(obj.constructor)`, a prototype lookup."
+    },
+    {
+      "describe": "isEmpty",
+      "it": "_.isEmpty({a: '1'})",
+      "source_line": 268,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet decides emptiness with `[Object, Array].includes(obj.constructor)`, a prototype lookup."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject(NaN)",
+      "source_line": 321,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet is built out of Object.prototype.toString.call, Object.getPrototypeOf and `Ctor instanceof Ctor`."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject([1, 2, 3])",
+      "source_line": 327,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet is built out of Object.prototype.toString.call, Object.getPrototypeOf and `Ctor instanceof Ctor`."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject(null)",
+      "source_line": 333,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet is built out of Object.prototype.toString.call, Object.getPrototypeOf and `Ctor instanceof Ctor`."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject({ 'x': 0, 'y': 0 })",
+      "source_line": 339,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The native snippet is built out of Object.prototype.toString.call, Object.getPrototypeOf and `Ctor instanceof Ctor`."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject(Object.create(null))",
+      "source_line": 345,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The input itself is constructed with Object.create, which Go has no counterpart for."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject(Object.create(new Foo()))",
+      "source_line": 351,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The input itself is constructed with Object.create over a constructed instance."
+    },
+    {
+      "describe": "isPlainObject",
+      "it": "_.isPlainObject(Object.create(new Date()))",
+      "source_line": 357,
+      "reason_code": "PROTOTYPE_CHAIN",
+      "reason": "The input itself is constructed with Object.create over a Date instance."
+    },
+    {
+      "describe": "get",
+      "it": "should handle undefined without default",
+      "source_line": 412,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "Both sides resolve to `undefined` and the assertion is that the two undefineds are the same value."
+    },
+    {
+      "describe": "get",
+      "it": "should handle deep undefined without default",
+      "source_line": 420,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "Both sides resolve to `undefined` and the assertion is that the two undefineds are the same value."
+    },
+    {
+      "describe": "get",
+      "it": "should handle undefined obj",
+      "source_line": 439,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "The receiver is the `undefined` value itself and the expected result is `undefined`."
+    },
+    {
+      "describe": "get",
+      "it": "should handle array path of keys with dots",
+      "source_line": 448,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "The path indexes element 0 of \"mm.n\", which is the number 3, so both sides resolve to `undefined`."
+    },
+    {
+      "describe": "upperFirst",
+      "it": "_.upperFirst(null)",
+      "source_line": 768,
+      "reason_code": "TOBOOLEAN_COERCION",
+      "reason": "The result comes from the `string ? ... : ''` guard applied to null rather than to a string."
+    },
+    {
+      "describe": "isString",
+      "it": "_.isString(\"abc\")",
+      "source_line": 793,
+      "reason_code": "WRAPPER_OBJECT_IDENTITY",
+      "reason": "The native snippet tests `typeof str.valueOf() === \"string\"`, the primitive-versus-wrapper distinction."
+    },
+    {
+      "describe": "isString",
+      "it": "_.isString(1)",
+      "source_line": 798,
+      "reason_code": "WRAPPER_OBJECT_IDENTITY",
+      "reason": "The native snippet tests `typeof str.valueOf() === \"string\"`, the primitive-versus-wrapper distinction."
+    },
+    {
+      "describe": "isString",
+      "it": "_.isString(\"\")",
+      "source_line": 803,
+      "reason_code": "WRAPPER_OBJECT_IDENTITY",
+      "reason": "The native snippet tests `typeof str.valueOf() === \"string\"`, the primitive-versus-wrapper distinction."
+    },
+    {
+      "describe": "lowerFirst",
+      "it": "_.lowerFirst(null)",
+      "source_line": 822,
+      "reason_code": "TOBOOLEAN_COERCION",
+      "reason": "The result comes from the `string ? ... : ''` guard applied to null rather than to a string."
+    },
+    {
+      "describe": "isUndefined",
+      "it": "_.isUndefined(definedVariable)",
+      "source_line": 842,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "The assertion is literally `definedVariable === undefined`."
+    },
+    {
+      "describe": "isUndefined",
+      "it": "_(definedVariable).isUndefined()",
+      "source_line": 847,
+      "reason_code": "LODASH_CHAIN_WRAPPER",
+      "reason": "The lodash side goes through the chainable _() wrapper object."
+    },
+    {
+      "describe": "isUndefined",
+      "it": "_.isUndefined(undefinedVariable)",
+      "source_line": 852,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "The subject is a declared but never assigned binding, whose value is `undefined`."
+    },
+    {
+      "describe": "isUndefined",
+      "it": "_(undefinedVariable).isUndefined()",
+      "source_line": 857,
+      "reason_code": "LODASH_CHAIN_WRAPPER",
+      "reason": "The lodash side goes through the chainable _() wrapper object."
+    },
+    {
+      "describe": "flatten",
+      "it": "_.flatten(twoLayerArray)",
+      "source_line": 866,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "`[1,2[3,4]]` is member access on a number literal, so the fixture is really [1, undefined] and the assertion is about that undefined element."
+    },
+    {
+      "describe": "flatten",
+      "it": "_.flatten(multiLayerArray)",
+      "source_line": 872,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "`[1,2[3,4,[5,6,[7,8]]]]` likewise evaluates to [1, undefined] through the comma operator and a numeric member access."
+    },
+    {
+      "describe": "last",
+      "it": "_.last([])",
+      "source_line": 1081,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "Both `_.last([])` and `[].at(-1)` are `undefined`, which Go has no value for."
+    },
+    {
+      "describe": "first",
+      "it": "_.first([])",
+      "source_line": 1089,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "Both `_.first([])` and `[].at(0)` are `undefined`, which Go has no value for."
+    },
+    {
+      "describe": "head",
+      "it": "_.head([])",
+      "source_line": 1097,
+      "reason_code": "UNDEFINED_VALUE",
+      "reason": "Both `_.head([])` and `[].at(0)` are `undefined`, which Go has no value for."
+    }
+  ]
+}

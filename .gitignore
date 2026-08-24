@@ -1,5 +1,23 @@
-node_modules
-coverage
-npm-debug.log
-/.vscode
-yarn.lock
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binaries and coverage
+*.test
+*.out
+coverage.txt
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Build output
+/bin/
+/dist/
+
+# Editor / OS
+.DS_Store
+coverage.out
